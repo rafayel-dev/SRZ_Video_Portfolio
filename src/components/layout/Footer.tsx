@@ -1,8 +1,34 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaPhoneAlt, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaPhoneAlt,
+  FaYoutube,
+} from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
+import { useGetFooterQuery } from "../../store/api/appApi";
 
 const Footer: React.FC = () => {
+  const { data, isLoading, isError } = useGetFooterQuery();
+
+  if (isLoading) {
+    return (
+      <footer className="bg-black text-white py-10 text-center">
+        Loading footer...
+      </footer>
+    );
+  }
+
+  if (isError || !data?.success) {
+    return (
+      <footer className="bg-black text-white py-10 text-center">
+        Failed to load footer
+      </footer>
+    );
+  }
+
+  const footer = data.data;
+
   return (
     <footer className="bg-black text-white pt-10 pb-5">
       <div className="container mx-auto">
@@ -11,21 +37,25 @@ const Footer: React.FC = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-5 mb-5">
+          {/* ADDRESS */}
           <div>
             <h3 className="text-xl font-bold mb-4">Address</h3>
-            <p className="text-gray-400">Bangladesh —</p>
-            <p className="text-gray-400"> 12/27 Sir Sayeed Road ,</p>
-            <p className="text-gray-400">Mohammadpur , Dhaka</p>
+            <p className="text-gray-400">
+              {footer.address.fullAddress}
+            </p>
           </div>
 
+          {/* EMAIL AND PHONE */}
           <div className="flex flex-col text-gray-400 space-y-2">
-            <h3 className="text-xl font-bold mb-4 text-white">Say Hello</h3>
+            <h3 className="text-xl font-bold mb-4 text-white">
+              Say Hello
+            </h3>
 
             <span className="hover:text-gray-200 transition-colors flex items-center">
               <IoMdMail className="mr-2" />
               <a
-                href="mailto:sheikhriaz.srz@gmail.com"
-                className="text-gray-400 hover:text-gray-200 transition-colors mb-1"
+                href={`mailto:${footer.email}`}
+                className="text-gray-400 hover:text-gray-200 transition-colors"
               >
                 sheikhriaz.srz@gmail.com
               </a>
@@ -33,9 +63,8 @@ const Footer: React.FC = () => {
 
             <span className="hover:text-gray-200 transition-colors flex items-center">
               <FaPhoneAlt className="mr-2" />
-
               <a
-                href="tel:+8801617776571"
+                href={`tel:${footer.phone}`}
                 className="text-gray-400 hover:text-gray-200 transition-colors"
               >
                 +8801617-776571
@@ -43,49 +72,49 @@ const Footer: React.FC = () => {
             </span>
           </div>
 
+          {/* SOCIAL LINKS */}
           <div>
             <h3 className="text-xl font-bold mb-4">Socials</h3>
             <ul>
               <li className="mb-2 flex items-center text-gray-400">
-                <span className="hover:text-gray-200 transition-colors flex items-center">
-                  <FaFacebook className="mr-2" />
-                  <a
-                    target="_blank"
-                    href="https://www.facebook.com/sheikh.riaz.313096"
-                    className="hover:text-gray-200 transition-colors"
-                  >
-                    Facebook
-                  </a>
-                </span>
+                <FaFacebook className="mr-2" />
+                <a
+                  href={footer.socialLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-200 transition-colors"
+                >
+                  Facebook
+                </a>
               </li>
 
               <li className="mb-2 flex items-center text-gray-400">
-                <span className="hover:text-gray-200 transition-colors flex items-center">
-                  <FaInstagram className="mr-2" />
-                  <a
-                    target="_blank"
-                    href="https://www.instagram.com/srz.official1"
-                    className="hover:text-white transition-colors"
-                  >
-                    Instagram
-                  </a>
-                </span>
+                <FaInstagram className="mr-2" />
+                <a
+                  href={footer.socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Instagram
+                </a>
               </li>
+
               <li className="mb-2 flex items-center text-gray-400">
-                <span className="hover:text-gray-200 transition-colors flex items-center">
-                  <FaYoutube className="mr-2" />
-                  <a
-                    target="_blank"
-                    href="https://www.youtube.com/@letsgo.beyond"
-                    className="hover:text-white transition-colors"
-                  >
-                    YouTube
-                  </a>
-                </span>
+                <FaYoutube className="mr-2" />
+                <a
+                  href={footer.socialLinks.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  YouTube
+                </a>
               </li>
             </ul>
           </div>
 
+          {/* NEWSLETTER (static for now) */}
           <div>
             <h3 className="text-xl font-bold mb-4">Newsletter</h3>
             <div className="flex items-center border-b border-gray-400 pb-2 mb-4">
@@ -98,8 +127,10 @@ const Footer: React.FC = () => {
                 →
               </button>
             </div>
+
             <label className="flex items-center text-gray-400 text-sm">
-              <input type="checkbox" className="mr-2" />I agree to the{" "}
+              <input type="checkbox" className="mr-2" />
+              I agree to the
               <a href="#" className="underline ml-1">
                 Privacy Policy
               </a>
@@ -108,8 +139,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* BOTTOM */}
         <div className="text-gray-300 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-          <p>SRZ Films © {new Date().getFullYear()}. All Rights Reserved.</p>
+          <p>
+            SRZ Films © {new Date().getFullYear()}. All Rights Reserved.
+          </p>
           <p>
             Develop by{" "}
             <a
