@@ -4,8 +4,8 @@ import ParallaxSection from "./components/sections/ParallaxSection";
 import HeroSection from "./components/sections/HeroSection";
 import Portfolio from "./components/sections/Portfolio";
 import AerialStories from "./components/sections/AerialStories";
-import VideoEditingProcess from "./components/sections/VideoEditingProcess";
-import Masterpieces from "./components/sections/Masterpieces";
+// import VideoEditingProcess from "./components/sections/VideoEditingProcess";
+// import Masterpieces from "./components/sections/Masterpieces";
 import Contact from "./components/sections/Contact";
 import AboutMe from "./components/sections/AboutMe";
 
@@ -21,9 +21,9 @@ function App() {
                 <HeroSection />
                 <Portfolio />
                 <AerialStories />
-                <VideoEditingProcess />
+                {/* <VideoEditingProcess /> */}
                 <ParallaxSection />
-                <Masterpieces />
+                {/* <Masterpieces /> */}
                 <Contact />
                 <AboutMe />
               </>

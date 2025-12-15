@@ -1,5 +1,5 @@
 import React from "react";
-import srzLogo from "../../assets/SRZ-Films.png"
+import SRZFilms from "../../assets/srzlogo.png"
 
 const Header: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="container flex items-center justify-between mx-auto">
         <div className="flex items-center">
           <div className="flex items-center justify-center text-white ">
-            <img src={srzLogo} alt="SRZ Films Logo" className="w-full h-26" />
+            <img src={SRZFilms} alt="SRZ Films Logo" className="w-full h-30" />
           </div>
         </div>
         <nav className="flex justify-end w-full">
