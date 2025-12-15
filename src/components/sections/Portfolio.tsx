@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 
 const API_KEY = import.meta.env.VITE_YT_API_KEY;
 const PLAYLIST_IDS = [
-  "https://www.youtube.com/playlist?list=PL8tjuJ1RdjKcOsdaO3TBxluYyCeHllMar",
+  "https://www.youtube.com/playlist?list=PL8tjuJ1RdjKdQZyl_zt3pI6sP1EeWW34A",
 ];
 
 // Playlist
@@ -96,11 +96,11 @@ const Portfolio: React.FC = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-black py-22 px-6"
+      className="bg-black py-12 px-6"
       id="portfolio"
     >
       <div className="text-center">
-        <p className="text-sm text-yellow-500 tracking-widest mb-4">
+        <p className="text-2xl text-yellow-500 tracking-widest mb-4">
           Our Portfolio
         </p>
         <h2 className="text-5xl font-bold text-white">Creative Works</h2>

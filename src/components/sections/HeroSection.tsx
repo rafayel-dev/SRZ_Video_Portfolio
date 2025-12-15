@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
-import video1 from "../../assets/Videos/DSC00549-scaled.webp";
-import video2 from "../../assets/Videos/DSC02340-scaled.webp";
-import video3 from "../../assets/Videos/DSC06373-scaled.webp";
+import video1 from "../../assets/Videos/heroVideo1.mp4";
+import video2 from "../../assets/Videos/heroVideo2.mp4";
+import video3 from "../../assets/Videos/heroVideo3.mp4";
 
 const heroSlidesData = [
   {
-    videoSrc: video1,
-    videoText: "Video",
-    productionText: "Production",
-    duration: 2,
+    videoUrl: video1,
+    topTitle: "Video",
+    bottomTitle: "Production",
+    duration: 10,
   },
   {
-    videoSrc: video2,
-    videoText: "Works",
-    productionText: "Creative",
-    duration: 2,
+    videoUrl: video2,
+    topTitle: "Works",
+    bottomTitle: "Creative",
+    duration: 10,
   },
   {
-    videoSrc: video3,
-    videoText: "Visual",
-    productionText: "Stories",
-    duration: 2,
+    videoUrl: video3,
+    topTitle: "Visual",
+    bottomTitle: "Stories",
+    duration: 10,
   },
 ];
 
@@ -30,13 +30,12 @@ const HeroSection: React.FC = () => {
 
   // Auto slide change
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentVideoIndex(
-        (prevIndex) => (prevIndex + 1) % heroSlidesData.length
-      );
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
+    const timeout = setTimeout(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % heroSlidesData.length);
+    }, heroSlidesData[currentVideoIndex].duration * 1000);
+
+    return () => clearTimeout(timeout);
+  }, [currentVideoIndex]);
 
   // Progress bar animation
   useEffect(() => {
@@ -56,22 +55,29 @@ const HeroSection: React.FC = () => {
       className="relative flex items-center justify-center h-screen overflow-hidden text-white"
     >
       {/* TEXT LEFT TOP */}
-      <h2 className="absolute top-[18%] left-[10%] text-[150px] font-bold leading-none z-20">
-        {heroSlidesData[currentVideoIndex].videoText}
+      <h2 className="absolute top-[15%] left-[15%] text-[150px] font-bold leading-none z-20">
+        {heroSlidesData[currentVideoIndex].topTitle}
       </h2>
 
-      {/* CENTER IMAGE */}
+      {/* Book Now Button */}
+      {/* <button>Book Now</button> */}
+
+      {/* CENTER VIDEO */}
       <div className="w-full h-full overflow-hidden">
-        <img
-          src={heroSlidesData[currentVideoIndex].videoSrc}
-          alt=""
-          className="object-cover w-full pt-0 mt-0 h-full"
+        <video
+          key={currentVideoIndex}
+          src={heroSlidesData[currentVideoIndex].videoUrl}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="object-cover w-full h-full"
         />
       </div>
 
       {/* TEXT LEFT BOTTOM */}
-      <h2 className="absolute bottom-[20%] left-[15%] text-[140px] font-bold leading-none z-20">
-        {heroSlidesData[currentVideoIndex].productionText}
+      <h2 className="absolute bottom-[15%] left-[50%] text-[140px] font-bold leading-none z-20">
+        {heroSlidesData[currentVideoIndex].bottomTitle}
       </h2>
 
       {/* PAGINATION */}
