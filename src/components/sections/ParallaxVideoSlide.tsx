@@ -62,7 +62,7 @@ const ParallaxVideoSlide: React.FC<ParallaxVideoSlideProps> = ({
           transition={{ delay: 0.4, duration: 1 }}
         >
           <button className="flex items-center justify-center w-40 h-40 text-lg font-semibold text-white transition-all duration-300 border-2 border-white rounded-full hover:bg-white hover:text-black">
-            Enter Now
+            Contact Now
             <FaArrowRight className="ml-2" />
           </button>
         </motion.div>

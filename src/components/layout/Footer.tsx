@@ -40,9 +40,10 @@ const Footer: React.FC = () => {
           {/* ADDRESS */}
           <div>
             <h3 className="text-xl font-bold mb-4">Address</h3>
-            <p className="text-gray-400">
-              {footer.address.fullAddress}
-            </p>
+            <div
+              className="text-gray-400"
+              dangerouslySetInnerHTML={{ __html: footer.address.fullAddress }}
+            />
           </div>
 
           {/* EMAIL AND PHONE */}
@@ -57,7 +58,7 @@ const Footer: React.FC = () => {
                 href={`mailto:${footer.email}`}
                 className="text-gray-400 hover:text-gray-200 transition-colors"
               >
-                sheikhriaz.srz@gmail.com
+                {footer.email}
               </a>
             </span>
 
@@ -65,9 +66,9 @@ const Footer: React.FC = () => {
               <FaPhoneAlt className="mr-2" />
               <a
                 href={`tel:${footer.phone}`}
-                className="text-gray-400 hover:text-gray-200 transition-colors"
+                className="text-gray-400 hover:text-gray-200  transition-colors"
               >
-                +8801617-776571
+                {footer.phone}
               </a>
             </span>
           </div>

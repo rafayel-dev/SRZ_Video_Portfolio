@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
       className="relative flex items-center justify-center h-screen overflow-hidden text-white"
     >
       {/* TOP TITLE */}
-      <h2 className="absolute top-[15%] left-[15%] text-[150px] font-bold z-20">
+      <h2 className="absolute top-[15%] left-[15%] text-[140px] font-bold z-20">
         {currentSlide.topTitle}
       </h2>
 
@@ -76,7 +76,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* BOTTOM TITLE */}
-      <h2 className="absolute bottom-[15%] left-[50%] text-[140px] font-bold z-20">
+      <h2 className="absolute justify-items-end bottom-[10%] left-[45%] text-[140px] font-bold z-20">
         {currentSlide.bottomTitle}
       </h2>
 
