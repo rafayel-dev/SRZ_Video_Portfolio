@@ -26,7 +26,6 @@ const ParallaxVideoSlide: React.FC<ParallaxVideoSlideProps> = ({
 
   return (
     <div className="relative flex items-center min-h-screen px-20 overflow-hidden text-white">
-
       {/* Background Video */}
       <motion.video
         style={{ y: videoY }}
@@ -61,7 +60,10 @@ const ParallaxVideoSlide: React.FC<ParallaxVideoSlideProps> = ({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 1 }}
         >
-          <button className="flex items-center justify-center w-40 h-40 text-lg font-semibold text-white transition-all duration-300 border-2 border-white rounded-full hover:bg-white hover:text-black">
+          <button
+            className="flex items-center justify-center w-40 h-40 text-lg font-semibold text-white transition-all duration-300 border-2 border-white rounded-full hover:bg-white hover:text-black"
+            onClick={() => (location.href = '#contact')}
+          >
             Contact Now
             <FaArrowRight className="ml-2" />
           </button>
