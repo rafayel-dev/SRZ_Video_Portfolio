@@ -57,9 +57,14 @@ const HeroSection: React.FC = () => {
       className="relative flex items-center justify-center h-screen overflow-hidden text-white"
     >
       {/* TOP TITLE */}
-      <h2 className="absolute top-[15%] left-[15%] text-[140px] font-bold z-20">
+      <h2 className="absolute top-[15%] left-[12%] text-[120px] font-bold z-20">
         {currentSlide.topTitle}
       </h2>
+
+      {/* BookNow Button */}
+      <button onClick={() => (location.href = '#contact')} className="absolute top-[32%] right-[20%] w-28 h-28 bg-none border-2 border-yellow-400 text-yellow-400 px-6 py-3 rounded-full font-bold z-20 cursor-pointer hover:bg-yellow-400 hover:text-black transition-all duration-300">
+        Book Now
+      </button>
 
       {/* VIDEO */}
       <div className="w-full h-full overflow-hidden">
@@ -74,7 +79,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* BOTTOM TITLE */}
-      <h2 className="absolute justify-items-end bottom-[10%] left-[45%] text-[140px] font-bold z-20">
+      <h2 className="absolute justify-items-end bottom-[10%] right-[10%] text-[120px] font-bold z-20">
         {currentSlide.bottomTitle}
       </h2>
 
