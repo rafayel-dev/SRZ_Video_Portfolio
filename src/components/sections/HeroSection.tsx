@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useGetHeroSectionQuery } from "../../store/api/appApi";
-
-const BASE_URL = "http://10.10.20.43:8000";
+import { BASE_URL, useGetHeroSectionQuery } from "../../store/api/appApi";
 
 const HeroSection: React.FC = () => {
   const { data, isLoading, isError } = useGetHeroSectionQuery();

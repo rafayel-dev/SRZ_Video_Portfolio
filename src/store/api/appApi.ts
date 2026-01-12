@@ -1,7 +1,9 @@
 // src/store/api/appApi.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BASE_URL = "http://10.10.20.43:8000";
+// export const BASE_URL = "http://10.10.20.43:3000";
+// export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://api.srzfilms.com";
 
 export const appApi = createApi({
   reducerPath: "appApi",
@@ -18,7 +20,7 @@ export const appApi = createApi({
       }
     >({
       query: (body) => ({
-        url: "contacts/post-contact",
+        url: "/api/contacts/post-contact",
         method: "POST",
         body,
       }),
@@ -38,7 +40,7 @@ export const appApi = createApi({
       },
       void
     >({
-      query: () => "about/get-about",
+      query: () => "/api/about/get-about",
     }),
     getHeroSection: builder.query<
       {
@@ -60,11 +62,11 @@ export const appApi = createApi({
       },
       void
     >({
-      query: () => "hero/get-title-video",
+      query: () => "/api/hero/get-title-video",
     }),
 
     getFooter: builder.query<FooterData, void>({
-      query: () => "footer/get-footer",
+      query: () => "/api/footer/get-footer",
     }),
   }),
 });

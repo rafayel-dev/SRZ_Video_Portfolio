@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import AboutMeImg from "../../assets/AboutMeImg.jpg";
 import { useGetAboutQuery } from "../../store/api/appApi";
+import { BASE_URL } from "../../store/api/appApi";
 
 const AboutMe: React.FC = () => {
   const ref = useRef(null);
@@ -11,8 +11,11 @@ const AboutMe: React.FC = () => {
 
   // If there's an image from the API, use it, otherwise fallback to local asset
   const imageUrl = data?.data?.imageUrl
-    ? `http://10.10.20.43:8000${data.data.imageUrl}`
-    : AboutMeImg;
+    ? data.data.imageUrl.startsWith("http")
+      ? data.data.imageUrl
+      : `${BASE_URL}${data.data.imageUrl}`
+    : "";
+
   const content = data?.data?.content;
 
   return (
