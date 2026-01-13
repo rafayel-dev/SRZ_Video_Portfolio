@@ -29,7 +29,7 @@ const ParallaxVideoSlide: React.FC<ParallaxVideoSlideProps> = ({
       {/* Background Video */}
       <motion.video
         style={{ y: videoY }}
-        className="absolute inset-0 object-cover w-full h-full"
+        className="absolute inset-0 object-cover w-full min-h-screen"
         src={videoSrc}
         autoPlay
         muted
