@@ -84,10 +84,10 @@ const Contact: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       id="contact"
-      className="relative min-h-screen bg-cover bg-center flex items-center justify-center p-12 "
+      className="relative min-h-screen bg-cover bg-center flex items-center justify-center p-4 md:p-12 "
       style={{ backgroundImage: `url(${contactBg})` }}
     >
-      <div className="bg-black/60 backdrop-blur-sm flex flex-col-2 gap-26 p-10 rounded-lg max-w-5xl">
+      <div className="bg-black/60 backdrop-blur-sm flex flex-col lg:flex-row gap-12 p-6 md:p-10 rounded-lg max-w-5xl">
         {/* LEFT SIDE */}
         <motion.div
           initial={{ opacity: 1 }}

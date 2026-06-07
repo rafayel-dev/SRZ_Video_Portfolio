@@ -11,7 +11,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="relative hidden w-full min-h-screen text-white bg-black md:block">
+    <div className="relative w-full min-h-screen text-white bg-black">
       <Header />
       <main>
         {children}

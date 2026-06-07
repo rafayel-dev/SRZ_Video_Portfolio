@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="absolute top-[15%] left-[12%] text-[120px] font-bold z-20"
+        className="absolute top-[15%] left-[5%] md:left-[12%] text-5xl md:text-[120px] font-bold z-20"
       >
         {currentSlide.topTitle}
       </motion.h2>
@@ -75,7 +75,7 @@ const HeroSection: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeInOut", delay: 0.6 }}
         onClick={() => (location.href = "#contact")}
-        className="absolute top-[32%] right-[20%] w-28 h-28 bg-none border-2 border-yellow-400 text-yellow-400 px-6 py-3 rounded-full font-bold z-20 cursor-pointer hover:bg-yellow-400 hover:text-black transition-all duration-300"
+        className="absolute top-[32%] right-[10%] md:right-[20%] w-20 h-20 md:w-28 md:h-28 bg-none border-2 border-yellow-400 text-yellow-400 text-sm md:text-base px-2 md:px-6 py-2 md:py-3 rounded-full font-bold z-20 cursor-pointer hover:bg-yellow-400 hover:text-black transition-all duration-300 flex items-center justify-center text-center leading-tight"
       >
         Book Now
       </motion.button>
@@ -88,11 +88,13 @@ const HeroSection: React.FC = () => {
         className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b0b0b]"
       >
         <motion.video
-          key={currentSlide._id}
+          key={`vid-${currentSlide._id}`}
           src={`${BASE_URL}${currentSlide.videoUrl}`}
           autoPlay
           muted
+          loop
           playsInline
+          poster="/assets/heroBg.jpg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -106,13 +108,13 @@ const HeroSection: React.FC = () => {
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="absolute justify-items-end bottom-[10%] right-[10%] text-[120px] font-bold z-20"
+        className="absolute justify-items-end bottom-[10%] right-[5%] md:right-[10%] text-5xl md:text-[120px] font-bold z-20"
       >
         {currentSlide.bottomTitle}
       </motion.h2>
 
       {/* PAGINATION */}
-      <div className="absolute bottom-[4%] left-[8%] flex items-center space-x-3 z-20 text-xl">
+      <div className="absolute bottom-[8%] md:bottom-[4%] left-[5%] md:left-[8%] flex items-center space-x-3 z-20 text-xl">
         <span
           onClick={() =>
             setCurrentVideoIndex(

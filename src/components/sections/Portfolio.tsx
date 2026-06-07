@@ -31,8 +31,30 @@ const Portfolio: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
 
+  const [slidesToShow, setSlidesToShow] = useState(3);
+  const [centerMode, setCenterMode] = useState(true);
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSlidesToShow(1);
+        setCenterMode(false);
+      } else if (window.innerWidth < 1024) {
+        setSlidesToShow(2);
+        setCenterMode(false);
+      } else {
+        setSlidesToShow(3);
+        setCenterMode(true);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchAllPlaylists = async () => {
@@ -81,10 +103,10 @@ const Portfolio: React.FC = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: slidesToShow,
     swipeToSlide: true,
     draggable: true,
-    centerMode: true,
+    centerMode: centerMode,
     centerPadding: "0px",
     autoplay: true,
     autoplaySpeed: 3000,
@@ -98,7 +120,7 @@ const Portfolio: React.FC = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-black py-12 px-6"
+      className="bg-black py-12 px-4"
       id="portfolio"
     >
       <div className="text-center">
@@ -114,14 +136,14 @@ const Portfolio: React.FC = () => {
         ) : (
           <Slider {...settings}>
             {videos.map((video, idx) => (
-              <div key={idx} className="p-3">
+              <div key={idx} className="md:p-3">
                 <div
                   className="relative group cursor-pointer overflow-hidden rounded-lg"
                   onClick={() => !isDragging && setSelectedVideo(video.id)}
                 >
                   <img
                     src={video.thumbnail}
-                    className="w-full h-80 object-cover rounded-lg group-hover:scale-105 duration-500"
+                    className="w-full h-52 md:h-80 object-cover rounded-lg group-hover:scale-102 duration-500"
                   />
 
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center duration-300">
