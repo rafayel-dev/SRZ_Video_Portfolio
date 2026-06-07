@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="container flex items-center justify-between mx-auto">
         <div className="flex items-center">
           <div className="flex items-center justify-center text-white ">
-            <img src={SRZFilms} alt="SRZ Films Logo" className="w-full h-30" />
+            <img onClick={() => {window.location.href = "#home"}} src={SRZFilms} alt="SRZ Films Logo" className="w-full h-30" />
           </div>
         </div>
         <nav className="flex justify-end w-full">
