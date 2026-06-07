@@ -1,31 +1,48 @@
-import React from "react";
-import videoSrc from "../../assets/crossroads.mp4";
-import rightImg from "../../assets/rightImg.jpg";
+import React, { useState, useEffect } from "react";
+const videoSrc = "/assets/crossroads.mp4";
+const rightImg = "/assets/rightImg.jpg";
 
 const AerialStories: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   return (
     <section className="py-20 overflow-hidden text-white bg-black ">
-      <div className="container grid grid-cols-2 gap-8 mx-auto">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto px-4 md:px-0">
         {/* Left Video */}
-        <div className="mt-0 overflow-hidden  h-165 w-155">
-          <video
-            src={videoSrc}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="object-cover w-full h-full mt-0 "
-          />
+        <div className="mt-0 overflow-hidden w-full h-auto md:h-165 md:w-155">
+          {isMobile ? (
+            <img
+              src={rightImg}
+              className="object-cover w-full h-full mt-0"
+              alt="Aerial Drone Shot"
+            />
+          ) : (
+            <video
+              src={videoSrc}
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster={rightImg}
+              className="object-cover w-full h-full mt-0"
+            />
+          )}
         </div>
 
         {/* Right Content */}
         <div className="flex flex-col items-start ">
           {/* Text block overlapping the image */}
           <div className="mb-8 space-y-4 ">
-            <p className="text-7xl font-bold text-yellow-500 uppercase">
+            <p className="text-5xl md:text-7xl font-bold text-yellow-500 uppercase">
               Drone
             </p>
-            <h2 className="text-3xl font-semibold ">
+            <h2 className="text-2xl md:text-3xl font-semibold ">
               Every flight's tells a story. With our drones, we explore angles that the human eye can’t see — transforming ordinary moments into extraordinary visuals.
             </h2>
             {/* <p className="leading-relaxed text-white ">

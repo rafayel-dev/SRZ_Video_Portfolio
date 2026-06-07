@@ -18,9 +18,9 @@ const WhatsAppFloat: React.FC = () => {
     message)}`;
 
   return (
-    <div className="fixed bottom-10 right-8 z-50 group flex items-center">
+    <div className="fixed bottom-4 right-4 md:bottom-10 md:right-8 z-50 group flex items-center">
       {/* Hover Text */}
-      <span className="mr-2 bg-white text-black text-sm px-2 py-1 rounded opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+      <span className="hidden md:inline-block mr-2 bg-white text-black text-sm px-2 py-1 rounded opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
         Chat on WhatsApp
       </span>
 
@@ -29,9 +29,9 @@ const WhatsAppFloat: React.FC = () => {
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-green-500 hover:bg-green-600 transition-all duration-300 text-white p-4 rounded-full shadow-lg"
+        className="bg-green-500 hover:bg-green-600 transition-all duration-300 text-white p-3 md:p-4 rounded-full shadow-lg flex items-center justify-center"
       >
-        <FaWhatsapp size={28} />
+        <FaWhatsapp className="text-[24px] md:text-[28px]" />
       </a>
     </div>
   );
