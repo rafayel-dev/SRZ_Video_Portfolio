@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import { FaPlay } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
 
-const API_KEY = import.meta.env.VITE_YT_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_YT_API_KEY;
 const PLAYLIST_IDS = [
   "https://www.youtube.com/playlist?list=PL8tjuJ1RdjKdQZyl_zt3pI6sP1EeWW34A",
 ];

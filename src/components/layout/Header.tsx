@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import SRZFilms from "../../assets/srzlogo.png"
+const SRZFilms = "/assets/srzlogo.png";
 
 const Header: React.FC = () => {
   return (

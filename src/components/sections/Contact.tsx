@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FaPaperPlane } from "react-icons/fa";
-import contactBg from "../../assets/contactBg.jpg";
+const contactBg = "/assets/contactBg.jpg";
 import { motion } from "framer-motion";
 import {
   usePostContactMutation,

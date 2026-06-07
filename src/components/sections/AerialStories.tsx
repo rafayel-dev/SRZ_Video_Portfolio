@@ -1,6 +1,6 @@
 import React from "react";
-import videoSrc from "../../assets/crossroads.mp4";
-import rightImg from "../../assets/rightImg.jpg";
+const videoSrc = "/assets/crossroads.mp4";
+const rightImg = "/assets/rightImg.jpg";
 
 const AerialStories: React.FC = () => {
   return (

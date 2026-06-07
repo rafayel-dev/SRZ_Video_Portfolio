@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import card1 from "../../assets/card1.jpg";
-import card2 from "../../assets/card2.jpg";
-import card3 from "../../assets/card3.jpg";
-import bgMask from "../../assets/h2-mask.png";
+const card1 = "/assets/card1.jpg";
+const card2 = "/assets/card2.jpg";
+const card3 = "/assets/card3.jpg";
+const bgMask = "/assets/h2-mask.png";
 import { motion, useInView } from "framer-motion";
 
 const Masterpieces: React.FC = () => {
