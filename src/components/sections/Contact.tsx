@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
       className="relative min-h-screen bg-cover bg-center flex items-center justify-center p-4 md:p-12 "
       style={{ backgroundImage: `url(${contactBg})` }}
     >
-      <div className="bg-black/60 backdrop-blur-sm flex flex-col lg:flex-row gap-12 p-6 md:p-10 rounded-lg max-w-5xl">
+      <div className="bg-black/60 backdrop-blur-sm flex flex-col lg:flex-row gap-8 lg:gap-12 p-6 md:p-10 rounded-lg w-full max-w-5xl">
         {/* LEFT SIDE */}
         <motion.div
           initial={{ opacity: 1 }}
@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-white w-full lg:w-1/2"
         >
-          <h2 className="text-4xl font-bold mb-8">Our Office</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">Our Office</h2>
 
           <div className="mb-6">
             <h3 className="text-red-400 text-lg font-semibold mb-2">
@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
             </span>
           </div>
 
-          <div className="w-90 h-54 rounded overflow-hidden">
+          <div className="w-full h-64 md:h-80 rounded overflow-hidden">
             <iframe
               title="office-map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6141.159191655605!2d90.3658645694148!3d23.76323951408316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf56264ad891%3A0xe6cc7f8568f9c9a6!2sSir%20Syed%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1766220507696!5m2!1sen!2sbd"
@@ -157,7 +157,7 @@ const Contact: React.FC = () => {
           {/* <p className="text-red-400 text-sm uppercase mb-2 font-semibold">
             Contact Us
           </p> */}
-          <h2 className="text-4xl font-bold text-white mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-14">
             Have questions? <br /> Get in touch!
           </h2>
 

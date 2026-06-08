@@ -1,38 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 const videoSrc = "/assets/crossroads.mp4";
 const rightImg = "/assets/rightImg.jpg";
 
 const AerialStories: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(true);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
   return (
     <section className="py-20 overflow-hidden text-white bg-black ">
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto px-4 md:px-0">
         {/* Left Video */}
-        <div className="mt-0 overflow-hidden w-full h-auto md:h-165 md:w-155">
-          {isMobile ? (
-            <img
-              src={rightImg}
-              className="object-cover w-full h-full mt-0"
-              alt="Aerial Drone Shot"
-            />
-          ) : (
-            <video
-              src={videoSrc}
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster={rightImg}
-              className="object-cover w-full h-full mt-0"
-            />
-          )}
+        <div className="hidden md:block mt-0 overflow-hidden w-full h-auto md:h-165 md:w-155">
+          <video
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={rightImg}
+            className="object-cover w-full h-full mt-0"
+          />
         </div>
 
         {/* Right Content */}
