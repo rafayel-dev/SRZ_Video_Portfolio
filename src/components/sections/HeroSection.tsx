@@ -89,12 +89,12 @@ const HeroSection: React.FC = () => {
       >
         <motion.video
           key={`vid-${currentSlide._id}`}
-          src={`${BASE_URL}${currentSlide.videoUrl}`}
+          src={`${BASE_URL}${currentSlide.videoUrl}#t=0.1`}
+          preload="metadata"
           autoPlay
           muted
           loop
           playsInline
-          poster="/assets/heroBg.jpg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
