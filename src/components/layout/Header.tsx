@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-const SRZFilms = "/assets/srzlogo.png";
+const SRZFilms = "/assets/SRZ-Films.png";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

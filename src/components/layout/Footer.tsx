@@ -30,13 +30,13 @@ const Footer: React.FC = () => {
   const footer = data.data;
 
   return (
-    <footer className="bg-black text-white pt-10 pb-5">
+    <footer className="bg-black text-white pt-12 pb-6 px-6 lg:px-0">
       <div className="container mx-auto">
-        <h2 className="text-5xl font-bold mb-10">
-          We develop & create <br /> digital future.
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 md:mb-10 text-center md:text-left">
+          We develop & create <br className="hidden md:inline" /> digital future.
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-5 mb-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8 border-b border-gray-700 pb-10 mb-6 text-center sm:text-left">
           {/* ADDRESS */}
           <div>
             <h3 className="text-xl font-bold mb-4">Address</h3>
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* EMAIL AND PHONE */}
-          <div className="flex flex-col text-gray-400 space-y-2">
+          <div className="flex flex-col text-gray-400 space-y-2 items-center sm:items-start">
             <h3 className="text-xl font-bold mb-4 text-white">
               Say Hello
             </h3>
@@ -74,9 +74,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* SOCIAL LINKS */}
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <h3 className="text-xl font-bold mb-4">Socials</h3>
-            <ul>
+            <ul className="flex flex-col items-center sm:items-start">
               <li className="mb-2 flex items-center text-gray-400">
                 <FaFacebook className="mr-2" />
                 <a
@@ -116,9 +116,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* NEWSLETTER (static for now) */}
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <h3 className="text-xl font-bold mb-4">Newsletter</h3>
-            <div className="flex items-center border-b border-gray-400 pb-2 mb-4">
+            <div className="flex items-center border-b border-gray-400 pb-2 mb-4 w-full sm:w-auto">
               <input
                 type="email"
                 placeholder="Enter Your Email Address"
@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* BOTTOM */}
-        <div className="text-gray-300 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+        <div className="text-gray-300 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-center sm:text-left mt-6">
           <p>
             SRZ Films © {new Date().getFullYear()}. All Rights Reserved.
           </p>
