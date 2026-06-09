@@ -1,147 +1,132 @@
 import React, { useEffect, useState } from "react";
 import { BASE_URL, useGetHeroSectionQuery } from "../../store/api/appApi";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+const EXPERTISES = [
+  "Fashion",
+  "Automotive",
+  "Corporate",
+  "Music Videos",
+  "Documentaries",
+  "Bridal",
+  "Promotional",
+];
 
 const HeroSection: React.FC = () => {
-  const { data, isLoading, isError } = useGetHeroSectionQuery();
+  const { data, isLoading } = useGetHeroSectionQuery();
+  const [currentExpertise, setCurrentExpertise] = useState(0);
 
-  const slides = data?.data?.items || [];
-
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-
-  /* ================= AUTO SLIDE CHANGE ================= */
   useEffect(() => {
-    if (!slides.length) return;
-
-    const timeout = setTimeout(() => {
-      setCurrentVideoIndex((prev) => (prev + 1) % slides.length);
-    }, slides[currentVideoIndex].duration * 1000);
-
-    return () => clearTimeout(timeout);
-  }, [currentVideoIndex, slides]);
-
-  /* ================= PROGRESS BAR ================= */
-  useEffect(() => {
-    if (!slides.length) return;
-
-    setProgress(0);
     const interval = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
-    }, (slides[currentVideoIndex].duration * 1000) / 100);
-
+      setCurrentExpertise((prev) => (prev + 1) % EXPERTISES.length);
+    }, 3000);
     return () => clearInterval(interval);
-  }, [currentVideoIndex, slides]);
+  }, []);
 
-  /* ================= STATES ================= */
   if (isLoading) {
     return (
-      <section className="h-screen flex items-center justify-center text-white">
-        Loading...
+      <section className="h-screen flex items-center justify-center text-white bg-black">
+        <div className="animate-pulse text-xl tracking-widest text-yellow-500">Loading...</div>
       </section>
     );
   }
 
-  if (isError || !slides.length) {
-    return (
-      <section className="h-screen flex items-center justify-center text-white">
-        Failed to load hero section
-      </section>
-    );
-  }
-
-  const currentSlide = slides[currentVideoIndex];
+  // Get the single background video or fallback
+  const videoUrl = data?.data?.videoUrl ? `${BASE_URL}${data.data.videoUrl}#t=0.1` : "/assets/hero.mp4#t=0.1";
 
   return (
     <section
       id="home"
-      className="relative flex items-center justify-center h-screen overflow-hidden text-white"
+      className="relative flex items-center justify-center h-screen overflow-hidden text-white bg-black"
     >
-      {/* TOP TITLE */}
-      <motion.h2
-        key={`top-title-${currentVideoIndex}`}
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="absolute top-[15%] left-[5%] md:left-[12%] text-5xl md:text-[120px] font-bold z-20"
-      >
-        {currentSlide.topTitle}
-      </motion.h2>
+      {/* BACKGROUND VIDEO */}
+      <video
+        src={videoUrl}
+        preload="metadata"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 object-cover w-full h-full z-0 opacity-80"
+      />
 
-      {/* BookNow Button */}
-      <motion.button
-        key={`book-now-${currentVideoIndex}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut", delay: 0.6 }}
-        onClick={() => (location.href = "#contact")}
-        className="absolute top-[32%] right-[10%] md:right-[20%] w-20 h-20 md:w-28 md:h-28 bg-none border-2 border-yellow-400 text-yellow-400 text-sm md:text-base px-2 md:px-6 py-2 md:py-3 rounded-full font-bold z-20 cursor-pointer hover:bg-yellow-400 hover:text-black transition-all duration-300 flex items-center justify-center text-center leading-tight"
-      >
-        Book Now
-      </motion.button>
+      {/* CINEMATIC OVERLAYS */}
+      <div className="absolute inset-0 bg-black/5 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50 z-10" />
 
-      {/* VIDEO */}
-      <motion.div
-        initial={{ filter: "blur(4px)" }}
-        animate={{ filter: "blur(0px)" }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="absolute inset-0 w-full h-full overflow-hidden bg-[#0b0b0b]"
-      >
-        <motion.video
-          key={`vid-${currentSlide._id}`}
-          src={`${BASE_URL}${currentSlide.videoUrl}#t=0.1`}
-          preload="metadata"
-          autoPlay
-          muted
-          loop
-          playsInline
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="object-cover w-full h-full"
-        />
-      </motion.div>
-
-      {/* BOTTOM TITLE */}
-      <motion.h2
-        key={`bottom-title-${currentVideoIndex}`}
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="absolute justify-items-end bottom-[10%] right-[5%] md:right-[10%] text-5xl md:text-[120px] font-bold z-20"
-      >
-        {currentSlide.bottomTitle}
-      </motion.h2>
-
-      {/* PAGINATION */}
-      <div className="absolute bottom-[8%] md:bottom-[4%] left-[5%] md:left-[8%] flex items-center space-x-3 z-20 text-xl">
-        <span
-          onClick={() =>
-            setCurrentVideoIndex(
-              (prev) => (prev - 1 + slides.length) % slides.length
-            )
-          }
-          className="cursor-pointer"
+      {/* CONTENT */}
+      <div className="relative z-20 container mx-auto px-6 text-center flex flex-col items-center justify-center h-full mt-10">
+        
+        <motion.p
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="text-yellow-500 uppercase tracking-[0.3em] md:tracking-[0.5em] font-semibold text-sm md:text-base mb-6 drop-shadow-md"
         >
-          0{currentVideoIndex + 1}
-        </span>
+          Cinematographer & Director
+        </motion.p>
 
-        <div className="w-[180px] h-0.5 bg-gray-500 overflow-hidden">
-          <div
-            className="h-full bg-white transition-all"
-            style={{ width: `${progress}%` }}
-          />
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight leading-none mb-2 drop-shadow-2xl"
+        >
+          We Create
+        </motion.h1>
+
+        <div className="h-[60px] sm:h-[80px] md:h-[120px] relative w-full flex items-center justify-center mb-6">
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={currentExpertise}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 drop-shadow-2xl text-center w-full"
+            >
+              {EXPERTISES[currentExpertise]}
+            </motion.h1>
+          </AnimatePresence>
         </div>
 
-        <span
-          onClick={() =>
-            setCurrentVideoIndex((prev) => (prev + 1) % slides.length)
-          }
-          className="cursor-pointer"
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          className="text-base sm:text-lg md:text-2xl text-gray-300 max-w-3xl font-light leading-relaxed mb-10 drop-shadow-md"
         >
-          0{slides.length}
-        </span>
+          Transforming visions into cinematic masterpieces. Specializing in high-end visuals for brands, artists, and life's greatest moments.
+        </motion.p>
+
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          onClick={() => (location.href = "#contact")}
+          className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black font-bold uppercase tracking-widest text-xs md:text-sm transition-all duration-300 rounded-sm backdrop-blur-sm"
+        >
+          Book a Shoot
+        </motion.button>
+        
       </div>
+      
+      {/* SCROLL DOWN INDICATOR */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
+      >
+        <span className="text-gray-400 text-xs tracking-widest uppercase mb-2">Scroll</span>
+        <div className="w-[1px] h-12 bg-gray-600 overflow-hidden">
+          <motion.div 
+            animate={{ y: [0, 50, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="w-full h-1/2 bg-yellow-500"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };

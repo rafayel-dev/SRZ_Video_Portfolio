@@ -7,10 +7,10 @@ export const BASE_URL = "https://api.srzfilms.com";
 
 interface CategoryMediaItem {
   _id: string;
-  topTitle: string;
+  playlistUrl: string;
   title: string;
-  description: string;
-  video: string;
+  subtitle: string;
+  isActive: boolean;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -65,13 +65,7 @@ export const appApi = createApi({
         message: string;
         data: {
           _id: string;
-          items: {
-            topTitle: string;
-            bottomTitle: string;
-            videoUrl: string;
-            _id: string;
-            duration: number;
-          }[];
+          videoUrl: string;
           createdAt: string;
           updatedAt: string;
           __v: number;

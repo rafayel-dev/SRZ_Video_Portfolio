@@ -4,85 +4,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import { FaPlay } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
+import { useGetCategoryMediaQuery } from "../../store/api/appApi";
 
 const API_KEY = process.env.NEXT_PUBLIC_YT_API_KEY;
 
-// Define your 5 playlists here
-const SECTIONS = [
-  {
-    title: "Popular Vlogs",
-    subtitle: "Here are some of our featured works!",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PL8tjuJ1RdjKdQZyl_zt3pI6sP1EeWW34A",
-  },
-  {
-    title: "Automotive",
-    subtitle: "High-octane automotive videography.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog2M14g8a73jtE_elgGIUnIR",
-  },
-  {
-    title: "Promotional Content",
-    subtitle: "Engaging promos tailored for your brand.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog0cIBitFBjA4lSJzMkdlwCu",
-  },
 
-  {
-    title: "Bridal & Makeover",
-    subtitle: "Capturing the magic of weddings and makeovers.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog1ZjJtn_gWVuibHji4k_M7Q",
-  },
-  {
-    title: "Restaurant",
-    subtitle: "Delectable culinary stories and dining experiences.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog3g2hOkg0aTnmAGIWQhh-zZ",
-  },
-  {
-    title: "Fashion",
-    subtitle: "Trendy fashion shows and apparel showcases.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog1r7QUAPOjT648lBgrW-HdA",
-  },
-  {
-    title: "OVC",
-    subtitle: "High-quality Online Video Commercials.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog0WYrKaJ48hpnTKwlNI2dGR",
-  },
-  {
-    title: "Documentary",
-    subtitle: "In-depth storytelling and cinematic documentaries.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog0L7tn4TxET_FtBhg7Ue4et",
-  },
-  {
-    title: "Saloon & Lifestyle",
-    subtitle: "Premium styling and lifestyle aesthetics.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog3hV6hNp-Q6C218yh8LCC3H",
-  },
-  {
-    title: "Business",
-    subtitle: "Professional business promotional videos.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog39cscAqRH8ETGI8ScQucsU",
-  },
-  {
-    title: "Corporate",
-    subtitle: "Corporate events and documentaries.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog3Jtq7qW_tcOITr493ts2fQ",
-  },
-  {
-    title: "Architecture",
-    subtitle: "Stunning real estate and architecture shots.",
-    playlistUrl:
-      "https://www.youtube.com/playlist?list=PLANz-i1Jvog3rwVBYyiMp8HvaK3_rejSP",
-  },
-];
 
 // Playlist
 const extractPlaylistId = (url: string) => {
@@ -98,6 +24,21 @@ const getYouTubeEmbedUrl = (videoId: string) =>
   `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
 
 const Portfolio: React.FC = () => {
+  const { data: categoryData } = useGetCategoryMediaQuery();
+
+  const dynamicSections = React.useMemo(() => {
+    if (categoryData?.data && categoryData.data.length > 0) {
+      return categoryData.data
+        .filter((item) => item.title && item.playlistUrl && item.isActive !== false)
+        .map((item) => ({
+          title: item.title,
+          subtitle: item.subtitle,
+          playlistUrl: item.playlistUrl,
+        }));
+    }
+    return [];
+  }, [categoryData]);
+
   const [sectionVideos, setSectionVideos] = useState<{
     [key: number]: { id: string; title: string; thumbnail: string }[];
   }>({});
@@ -138,7 +79,7 @@ const Portfolio: React.FC = () => {
       try {
         setLoading(true);
 
-        const fetchPromises = SECTIONS.map(async (section, index) => {
+        const fetchPromises = dynamicSections.map(async (section, index) => {
           const playlistId = extractPlaylistId(section.playlistUrl);
           if (!playlistId) return { index, videos: [] };
 
@@ -187,7 +128,7 @@ const Portfolio: React.FC = () => {
     };
 
     fetchAllPlaylists();
-  }, []);
+  }, [dynamicSections]);
 
   const settings = {
     arrows: false,
@@ -220,7 +161,7 @@ const Portfolio: React.FC = () => {
         </p>
       </div>
       {/* Sections */}
-      {SECTIONS.map((section, index) => (
+      {dynamicSections.map((section, index) => (
         <div key={index} className="">
           <div className="px-2">
             <h2 className="text-3xl md:text-4xl font-bold text-white">

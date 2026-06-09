@@ -1,6 +1,5 @@
 "use client";
 
-// import ParallaxSection from "../components/sections/ParallaxSection";
 import HeroSection from "../components/sections/HeroSection";
 import Portfolio from "../components/sections/Portfolio";
 import AerialStories from "../components/sections/AerialStories";
@@ -13,7 +12,6 @@ export default function Home() {
       <HeroSection />
       <Portfolio />
       <AerialStories />
-      {/* <ParallaxSection /> */}
       <Contact />
       <AboutMe />
     </>
