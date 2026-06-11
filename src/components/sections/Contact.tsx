@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
       className="relative min-h-screen bg-cover bg-center flex items-center justify-center p-4 md:p-12 "
       style={{ backgroundImage: `url(${contactBg})` }}
     >
-      <div className="bg-black/60 backdrop-blur-sm flex flex-col lg:flex-row gap-8 lg:gap-12 p-6 md:p-10 rounded-lg w-full max-w-5xl">
+      <div className="bg-black/80 flex flex-col lg:flex-row gap-8 lg:gap-12 p-6 md:p-10 rounded-lg w-full max-w-5xl">
         {/* LEFT SIDE */}
         <motion.div
           initial={{ opacity: 1 }}
@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
             Contact Us
           </p> */}
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 md:mb-14">
-            Have questions? <br /> Get in touch!
+            Have questions or <br /> want to book a shoot?
           </h2>
 
           <form

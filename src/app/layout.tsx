@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "SRZ Films",
     images: [
       {
-        url: "/assets/heroBg.jpg",
+        url: "/assets/SRZ-Films.png",
         width: 1200,
         height: 630,
         alt: "SRZ Films Cinematic Videography",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SRZ Films | Cinematic Video Production",
     description: "Transforming ordinary moments into extraordinary visuals with premium cinematic video production.",
-    images: ["/assets/heroBg.jpg"],
+    images: ["/assets/SRZ-Films.png"],
   },
 };
 

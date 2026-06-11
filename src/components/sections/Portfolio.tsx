@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import { FaPlay } from "react-icons/fa";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useGetCategoryMediaQuery } from "../../store/api/appApi";
 
 const API_KEY = process.env.NEXT_PUBLIC_YT_API_KEY;
@@ -49,8 +49,7 @@ const Portfolio: React.FC = () => {
   const [slidesToShow, setSlidesToShow] = useState(4);
   const [centerMode, setCenterMode] = useState(true);
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  // Removed useInView
 
   useEffect(() => {
     const handleResize = () => {
@@ -132,7 +131,7 @@ const Portfolio: React.FC = () => {
 
   const settings = {
     arrows: false,
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: slidesToShow,
@@ -148,9 +147,9 @@ const Portfolio: React.FC = () => {
 
   return (
     <motion.section
-      ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="bg-black py-10 px-4"
       id="portfolio"

@@ -26,13 +26,17 @@ const HeroSection: React.FC = () => {
   if (isLoading) {
     return (
       <section className="h-screen flex items-center justify-center text-white bg-black">
-        <div className="animate-pulse text-xl tracking-widest text-yellow-500">Loading...</div>
+        <div className="animate-pulse text-xl tracking-widest text-yellow-500">
+          Loading...
+        </div>
       </section>
     );
   }
 
   // Get the single background video or fallback
-  const videoUrl = data?.data?.videoUrl ? `${BASE_URL}${data.data.videoUrl}#t=0.1` : "/assets/hero.mp4#t=0.1";
+  const videoUrl = data?.data?.videoUrl
+    ? `${BASE_URL}${data.data.videoUrl}#t=0.1`
+    : "/assets/hero.mp4#t=0.1";
 
   return (
     <section
@@ -47,7 +51,7 @@ const HeroSection: React.FC = () => {
         muted
         loop
         playsInline
-        className="absolute inset-0 object-cover w-full h-full z-0 opacity-80"
+        className="absolute inset-0 object-cover w-full h-full z-0 opacity-80 transform-gpu"
       />
 
       {/* CINEMATIC OVERLAYS */}
@@ -56,21 +60,20 @@ const HeroSection: React.FC = () => {
 
       {/* CONTENT */}
       <div className="relative z-20 container mx-auto px-6 text-center flex flex-col items-center justify-center h-full mt-10">
-        
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-yellow-500 uppercase tracking-[0.3em] md:tracking-[0.5em] font-semibold text-sm md:text-base mb-6 drop-shadow-md"
+          className="text-yellow-500 uppercase tracking-[0.3em] md:tracking-[0.5em] font-semibold text-sm md:text-base mb-6"
         >
           Cinematographer & Director
         </motion.p>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight leading-none mb-2 drop-shadow-2xl"
+          className="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight leading-none mb-2"
         >
           We Create
         </motion.h1>
@@ -83,7 +86,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 drop-shadow-2xl text-center w-full"
+              className="absolute text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 text-center w-full"
             >
               {EXPERTISES[currentExpertise]}
             </motion.h1>
@@ -94,9 +97,10 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="text-base sm:text-lg md:text-2xl text-gray-300 max-w-3xl font-light leading-relaxed mb-10 drop-shadow-md"
+          className="text-base sm:text-lg md:text-2xl text-gray-300 max-w-3xl font-light leading-relaxed mb-10"
         >
-          Transforming visions into cinematic masterpieces. Specializing in high-end visuals for brands, artists, and life's greatest moments.
+          Transforming visions into cinematic masterpieces. Specializing in
+          high-end visuals for brands, artists, and life's greatest moments.
         </motion.p>
 
         <motion.button
@@ -108,19 +112,20 @@ const HeroSection: React.FC = () => {
         >
           Book a Shoot
         </motion.button>
-        
       </div>
-      
+
       {/* SCROLL DOWN INDICATOR */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
       >
-        <span className="text-gray-400 text-xs tracking-widest uppercase mb-2">Scroll</span>
+        <span className="text-gray-400 text-xs tracking-widest uppercase mb-2">
+          Scroll
+        </span>
         <div className="w-[1px] h-12 bg-gray-600 overflow-hidden">
-          <motion.div 
+          <motion.div
             animate={{ y: [0, 50, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             className="w-full h-1/2 bg-yellow-500"

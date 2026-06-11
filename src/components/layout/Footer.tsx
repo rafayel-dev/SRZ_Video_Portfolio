@@ -115,28 +115,14 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* NEWSLETTER (static for now) */}
+          {/* BUSINESS HOURS */}
           <div className="flex flex-col items-center sm:items-start">
-            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
-            <div className="flex items-center border-b border-gray-400 pb-2 mb-4 w-full sm:w-auto">
-              <input
-                type="email"
-                placeholder="Enter Your Email Address"
-                className="bg-transparent border-none outline-none text-gray-400 w-full"
-              />
-              <button className="ml-2 text-gray-400 text-xl hover:text-white">
-                →
-              </button>
-            </div>
-
-            <label className="flex items-center text-gray-400 text-sm">
-              <input type="checkbox" className="mr-2" />
-              I agree to the
-              <a href="#" className="underline ml-1">
-                Privacy Policy
-              </a>
-              .
-            </label>
+            <h3 className="text-xl font-bold mb-4">Business Hours</h3>
+            <ul className="flex flex-col items-center sm:items-start space-y-3 text-gray-400">
+              <li>
+                <span className="font-semibold block sm:inline">Sunday - Saturday:</span> <br /> 11:00 AM - 10:00 PM
+              </li>
+            </ul>
           </div>
         </div>
 
